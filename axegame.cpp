@@ -2,12 +2,30 @@
 
 int main()
 {
-    int width{450};
-    int height{350};
+    int width{900};
+    int height{550};
     InitWindow(width,height,"Axe Game");
 
-    int circlex{225};
-    int circley{175};
+    int circlex{200};
+    int circley{200};
+
+    int circleRadius(25);
+// circle edges
+    int l_circlex{circlex-circleRadius};
+    int r_circlex{circlex+circleRadius};
+    int u_circley{circley-circleRadius};
+    int b_circley{circley+circleRadius};
+
+    int axex{400};
+    int axey{0};
+    int axelength{50};
+//axe adges
+    int l_axex{axex};
+    int r_axex{axex+axelength};
+    int u_axey{axey};
+    int b_axey{axey+axelength};
+
+    int direction{5};
 
     SetTargetFPS(60); //sets time for how fast it upgrades
     while (WindowShouldClose() == false)
@@ -16,9 +34,17 @@ int main()
         ClearBackground(PINK);
 
 
-        DrawCircle(circlex,circley,25, BLUE);
+        DrawCircle(circlex,circley,circleRadius, BLUE);
+        DrawRectangle(axex,axey,axelength,axelength,WHITE);
 
-        if (IsKeyDown(KEY_RIGHT)&& circlex<450)
+        axey+=direction;
+        if(axey>height|| axey<0)
+        {
+            direction = -direction;
+
+        }
+
+        if (IsKeyDown(KEY_RIGHT)&& circlex<width)
         {
             circlex=circlex+5;
         }
